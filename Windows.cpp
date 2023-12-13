@@ -58,4 +58,8 @@ int _tmain() {
         printf("CreateProcess failed (%d).\n", GetLastError());
         return 1;
     }
+
+    WaitForSingleObject(pi.hProcess, INFINITE);
+
+
 }
