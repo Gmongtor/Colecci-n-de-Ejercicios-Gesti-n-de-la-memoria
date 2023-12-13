@@ -63,4 +63,9 @@ int _tmain() {
 
     CloseHandle(pi.hProcess);
     CloseHandle(pi.hThread);
+
+    UnmapViewOfFile(pBuf);
+    CloseHandle(hMapFile);
+
+    return 0;
 }
