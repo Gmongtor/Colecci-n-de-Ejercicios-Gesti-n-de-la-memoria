@@ -6,4 +6,19 @@
 int _tmain() {
     HANDLE hMapFile;
     LPCTSTR pBuf;
+
+
+    hMapFile = CreateFileMapping(
+            INVALID_HANDLE_VALUE,
+            NULL,
+            PAGE_READWRITE,
+            0,
+            SIZE,
+            _T("SharedMemory"));
+
+    if (hMapFile == NULL) {
+        _tprintf(_T("Could not create file mapping object (%d).\n"),
+                 GetLastError());
+        return 1;
+    }
 }
