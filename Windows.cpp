@@ -14,10 +14,10 @@ int _tmain() {
             PAGE_READWRITE,
             0,
             SIZE,
-            _T("SharedMemory"));
+            _T("MemoriaCompartida"));
 
     if (hMapFile == NULL) {
-        _tprintf(_T("Could not create file mapping object (%d).\n"),
+        _tprintf(_T("No se puede crear el archivo de mapeo (%d).\n"),
                  GetLastError());
         return 1;
     }
@@ -27,15 +27,15 @@ int _tmain() {
                                   0,
                                   SIZE);
     if (pBuf == NULL) {
-        _tprintf(_T("Could not map view of file (%d).\n"),
+        _tprintf(_T("No se puede mapear la vista de archivo (%d).\n"),
                  GetLastError());
 
         CloseHandle(hMapFile);
 
         return 1;
     }
-    CopyMemory((PVOID)pBuf, _T("Hello from the parent process!"),
-               (_tcslen(_T("Hello from the parent process!")) * sizeof(TCHAR)));
+    CopyMemory((PVOID)pBuf, _T("¡Hola desde el proceso padre!"),
+               (_tcslen(_T("¡Hola desde el proceso padre!")) * sizeof(TCHAR)));
 
     STARTUPINFO si;
     PROCESS_INFORMATION pi;
@@ -44,18 +44,18 @@ int _tmain() {
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
-    if (!CreateProcess(_T("PathToChildProcessExecutable"), // Aquí va la ruta del ejecutable del proceso hijo
-                       NULL,           // Argumentos de la línea de comandos
-                       NULL,           // Atributos de seguridad del proceso
-                       NULL,           // Atributos de seguridad del hilo
-                       FALSE,          // Manejadores heredados
-                       0,              // Banderas de creación
-                       NULL,           // Usar el entorno del padre
-                       NULL,           // Usar el directorio actual del padre
-                       &si,            // Información de inicio
-                       &pi))           // Información del proceso
+    if (!CreateProcess(_T("Ruta al proceso hijo ejecutable"),
+                       NULL,
+                       NULL,
+                       NULL,
+                       FALSE,
+                       0,
+                       NULL,
+                       NULL,
+                       &si,
+                       &pi))
     {
-        printf("CreateProcess failed (%d).\n", GetLastError());
+        printf("Error al crear el proceso(%d).\n", GetLastError());
         return 1;
     }
 
