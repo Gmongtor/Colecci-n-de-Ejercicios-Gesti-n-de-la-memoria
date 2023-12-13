@@ -61,5 +61,6 @@ int _tmain() {
 
     WaitForSingleObject(pi.hProcess, INFINITE);
 
-
+    CloseHandle(pi.hProcess);
+    CloseHandle(pi.hThread);
 }
