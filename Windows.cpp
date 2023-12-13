@@ -36,4 +36,12 @@ int _tmain() {
     }
     CopyMemory((PVOID)pBuf, _T("Hello from the parent process!"),
                (_tcslen(_T("Hello from the parent process!")) * sizeof(TCHAR)));
+
+    STARTUPINFO si;
+    PROCESS_INFORMATION pi;
+
+    ZeroMemory(&si, sizeof(si));
+    si.cb = sizeof(si);
+    ZeroMemory(&pi, sizeof(pi));
+
 }
