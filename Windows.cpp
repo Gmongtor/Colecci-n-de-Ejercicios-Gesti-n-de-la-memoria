@@ -21,4 +21,10 @@ int _tmain() {
                  GetLastError());
         return 1;
     }
+    pBuf = (LPTSTR) MapViewOfFile(hMapFile,
+                                  FILE_MAP_ALL_ACCESS,
+                                  0,
+                                  0,
+                                  SIZE);
+
 }
