@@ -34,4 +34,6 @@ int _tmain() {
 
         return 1;
     }
+    CopyMemory((PVOID)pBuf, _T("Hello from the parent process!"),
+               (_tcslen(_T("Hello from the parent process!")) * sizeof(TCHAR)));
 }
