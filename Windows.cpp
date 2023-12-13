@@ -44,4 +44,18 @@ int _tmain() {
     si.cb = sizeof(si);
     ZeroMemory(&pi, sizeof(pi));
 
+    if (!CreateProcess(_T("PathToChildProcessExecutable"), // Aquí va la ruta del ejecutable del proceso hijo
+                       NULL,           // Argumentos de la línea de comandos
+                       NULL,           // Atributos de seguridad del proceso
+                       NULL,           // Atributos de seguridad del hilo
+                       FALSE,          // Manejadores heredados
+                       0,              // Banderas de creación
+                       NULL,           // Usar el entorno del padre
+                       NULL,           // Usar el directorio actual del padre
+                       &si,            // Información de inicio
+                       &pi))           // Información del proceso
+    {
+        printf("CreateProcess failed (%d).\n", GetLastError());
+        return 1;
+    }
 }
