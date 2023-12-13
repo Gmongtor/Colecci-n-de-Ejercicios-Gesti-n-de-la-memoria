@@ -26,5 +26,12 @@ int _tmain() {
                                   0,
                                   0,
                                   SIZE);
+    if (pBuf == NULL) {
+        _tprintf(_T("Could not map view of file (%d).\n"),
+                 GetLastError());
 
+        CloseHandle(hMapFile);
+
+        return 1;
+    }
 }
